@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sail\Console\PublishCommand;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -30,7 +31,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-
+        event(new Registered($user));
 
         return view('regist.complete', compact('user'));
     }
