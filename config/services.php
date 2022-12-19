@@ -1,4 +1,5 @@
 <?php
+use League\OAuth1\Client\Server\Twitter;
 
 return [
 
@@ -31,4 +32,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'twitter' => [
+        'client_id'       => env('TWITTER_CLIENT_ID'),
+        'client_secret'   => env('TWITTER_CLIENT_SECRET'),
+        'redirect'        => env('TWITTER_CLIENT_CALLBACK'),
+        'oauth'           => 2,
+    ]
 ];
