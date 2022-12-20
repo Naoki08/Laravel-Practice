@@ -5,7 +5,7 @@
         <title>ログインフォーム</title>
     </head>
     <body>
-    <form name="loginform" action="/twitter/login" method="post">
+    <form name="loginform" method="post">
         {{ csrf_field() }}
         <button type="submit" name="action" value="send">Twitter Login</button>
     </form>

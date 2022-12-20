@@ -17,16 +17,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/twitter/login', [App\Http\Controllers\MyPageController::class, 'index'])
+Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])
     ->middleware('guest')
     ->name('login');
 
-Route::post('/twitter/login', [App\Http\Controllers\MyPageController::class, 'login'])
+Route::post('/login', [App\Http\Controllers\LoginController::class, 'redirectToProvider'])
     ->middleware('guest');
 
-Route::get('/twitter/callback', [App\Http\Controllers\MyPageController::class, 'callback']);
-
+Route::get('/twitter/callback', [App\Http\Controllers\LoginController::class, 'handleProviderCallback']);
 
 Route::get('/logout', [App\Http\Controllers\LoginController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth');
